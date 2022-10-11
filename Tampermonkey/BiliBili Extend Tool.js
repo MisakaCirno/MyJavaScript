@@ -18,14 +18,20 @@
 
   let interval = setInterval(createExtendElement, 1000);
 
+  let isLoaded = false;
+
   function createExtendElement() {
     console.log("interval is running……");
 
     //功能1：扩展倍速选项
     extend1();
 
-    clearInterval(interval);
-    console.log("interval was cleared");
+    if (isLoaded) {
+      clearInterval(interval);
+      console.log("interval was cleared");
+    } else {
+      return;
+    }
 
     //功能2：如果有合集，扩大合集播放列表的高度
     extend2();
@@ -70,6 +76,8 @@
     //修改按钮文字
     var button = document.querySelector(".bpx-player-ctrl-playbackrate-result");
     button.innerText = "倍速+";
+
+    isLoaded = true;
   }
 
   function extend2() {
